@@ -4,6 +4,7 @@
 
 1. Стек
 2. Дек.
+3. Очередь.
 
 ## Стек
 
@@ -275,6 +276,125 @@ private:
 
 };
 ```
+## Очередь
+
+Очередь - абстрактный тип данных с дисциплиной доступа к элементам FIFO (dirst-in-first-out).
+
+Реализация на языке C++
+
+```C++
+struct data {
+
+  std::string name;
+  int old;
+};
+```
+```C++
+struct queueObject {
+
+  data data;
+  queueObject* prev;
+  queueObject* next;
+};
+```
+```C++
+class Queue {
+
+public:
+
+  Queue() {
+
+    head = nullptr;
+    tail = nullptr;
+  }
+
+  void Push(data newData) {
+
+    queueObject* ptr = new queueObject;
+    ptr->data = newData;
+
+    std::cout << "Object {" << ptr->data.name << ", " << ptr->data.old << "} added" << std::endl;
+
+    if (head == nullptr) {
+
+      ptr->prev = nullptr;
+      ptr->next = nullptr;
+
+      head = ptr;
+      tail = ptr;
+    }
+    else {
+
+      ptr->prev = tail;
+      ptr->next = nullptr;
+
+      tail->next = ptr;
+      tail = ptr;
+    }
+
+  }
+
+  void Show() {
+
+    queueObject* ptr = head;
+
+    while (ptr != nullptr) {
+
+      std::cout << "{" << ptr->data.name << ", " << ptr->data.old << "}" << std::endl;
+      ptr = ptr->next;
+    }
+
+    std::cout << std::endl;
+  }
+
+  void Pop() {
+
+    if (head == nullptr) {
+
+      return;
+    }
+
+    if (head == tail) {
+
+      std::cout << "Object {" << head->data.name << ", " << head->data.old << "} deleted" << std::endl;
+
+      delete head;
+      head = nullptr;
+    }
+    else {
+
+      queueObject* ptr = head;
+
+      std::cout << "Object {" << head->data.name << ", " << head->data.old << "} deleted" << std::endl;
+
+      head = head->next;
+      head->prev = nullptr;
+
+      delete ptr;
+    }
+  }
+
+  void Delete() {
+
+      while (head != nullptr) {
+
+      this->Pop();
+    }
+  }
+
+private:
+
+  queueObject* head;
+  queueObject* tail;
+
+};
+```
+
+
+
+
+
+
 
 
 
