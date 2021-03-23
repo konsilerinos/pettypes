@@ -21,6 +21,13 @@ struct deqObject {
 	deqObject* next;
 };
 
+struct queueObject {
+
+	data data;
+	queueObject* prev;
+	queueObject* next;
+};
+
 class Stack {
 
 public:
@@ -47,8 +54,8 @@ public:
 
 	Deq();
 
-	void PushFront(data newData);
-	void PushBack(data newData);
+	void PushFront(data);
+	void PushBack(data);
 
 	void Show();
 
@@ -61,5 +68,26 @@ private:
 
 	deqObject* head;
 	deqObject* tail;
+
+};
+
+class Queue {
+
+public:
+
+	Queue();
+
+	void Push(data);
+
+	void Show();
+
+	void Pop();
+
+	void Delete();
+
+private:
+
+	queueObject* head;
+	queueObject* tail;
 
 };

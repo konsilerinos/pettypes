@@ -33,5 +33,20 @@ int main() {
 
 	deq.Delete();
 
+	Queue queue;
+
+	std::cout << "===| Queue using" << std::endl << std::endl;
+
+	queue.Push({ "qwerty", 1 });
+	queue.Push({ "Konsilerin", 2 });
+	queue.Push({ "Fortses", 3 });
+	queue.Push({ "Konsilerinos", 4 });
+
+	std::cout << std::endl;
+
+	queue.Show();
+
+	queue.Delete();
+
 	return 0;
 }
