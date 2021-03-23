@@ -2,7 +2,7 @@
 
 Stack::Stack() {
 
-	start = nullptr;
+	head = nullptr;
 }
 
 void Stack::Push(data newData) {
@@ -12,20 +12,20 @@ void Stack::Push(data newData) {
 
 	std::cout << "Object {" << ptr->data.name << ", " << ptr->data.old << "} added" << std::endl;
 
-	if (start == nullptr) {
+	if (head == nullptr) {
 
-		start = ptr;
-		start->next = nullptr;
+		head = ptr;
+		head->next = nullptr;
 	}
 	else {
 
-		ptr->next = start;
-		start = ptr;
+		ptr->next = head;
+		head = ptr;
 	}
 }
 void Stack::Show() {
 
-	stackObject* ptr = start;
+	stackObject* ptr = head;
 
 	while (ptr != nullptr) {
 
@@ -37,32 +37,32 @@ void Stack::Show() {
 }
 void Stack::Pop() {
 
-	if (start == nullptr) {
+	if (head == nullptr) {
 
 		return;
 	}
 
-	if (start->next == nullptr) {
+	if (head->next == nullptr) {
 
-		std::cout << "Object {" << start->data.name << ", " << start->data.old << "} deleted" << std::endl;
+		std::cout << "Object {" << head->data.name << ", " << head->data.old << "} deleted" << std::endl;
 
-		delete start;
-		start = nullptr;
+		delete head;
+		head = nullptr;
 	}
 	else {
 
-		stackObject* ptr = start;
+		stackObject* ptr = head;
 
-		std::cout << "Object {" << start->data.name << ", " << start->data.old << "} deleted" << std::endl;
+		std::cout << "Object {" << head->data.name << ", " << head->data.old << "} deleted" << std::endl;
 
-		start = start->next;
+		head = head->next;
 
 		delete ptr;
 	}
 }
 void Stack::Delete() {
 
-	while (start != nullptr) {
+	while (head != nullptr) {
 
 		this->Pop();
 	}
@@ -72,8 +72,8 @@ void Stack::Delete() {
 
 Deq::Deq() {
 
-	start = nullptr;
-	end = nullptr;
+	head = nullptr;
+	tail = nullptr;
 }
 
 void Deq::PushFront(data newData) {
@@ -83,21 +83,21 @@ void Deq::PushFront(data newData) {
 
 	std::cout << "Object {" << ptr->data.name << ", " << ptr->data.old << "} added" << std::endl;
 
-	if (start == nullptr) {
+	if (head == nullptr) {
 
 		ptr->prev = nullptr;
 		ptr->next = nullptr;
 
-		start = ptr;
-		end = ptr;
+		head = ptr;
+		tail = ptr;
 	}
 	else {
 
 		ptr->prev = nullptr;
-		ptr->next = start;
+		ptr->next = head;
 
-		start->prev = ptr;
-		start = ptr;
+		head->prev = ptr;
+		head = ptr;
 	}
 }
 void Deq::PushBack(data newData) {
@@ -107,26 +107,26 @@ void Deq::PushBack(data newData) {
 
 	std::cout << "Object {" << ptr->data.name << ", " << ptr->data.old << "} added" << std::endl;
 
-	if (start == nullptr) {
+	if (head == nullptr) {
 
 		ptr->prev = nullptr;
 		ptr->next = nullptr;
 
-		start = ptr;
-		end = ptr;
+		head = ptr;
+		tail = ptr;
 	}
 	else {
 
-		ptr->prev = end;
+		ptr->prev = tail;
 		ptr->next = nullptr;
 
-		end->next = ptr;
-		end = ptr;
+		tail->next = ptr;
+		tail = ptr;
 	}
 }
 void Deq::Show() {
 
-	deqObject* ptr = start;
+	deqObject* ptr = head;
 
 	while (ptr != nullptr) {
 
@@ -138,61 +138,61 @@ void Deq::Show() {
 }
 void Deq::PopFront() {
 
-	if (start == nullptr) {
+	if (head == nullptr) {
 
 		return;
 	}
 
-	if (start == end) {
+	if (head == tail) {
 
-		std::cout << "Object {" << start->data.name << ", " << start->data.old << "} deleted" << std::endl;
+		std::cout << "Object {" << head->data.name << ", " << head->data.old << "} deleted" << std::endl;
 
-		delete start;
-		start = nullptr;
+		delete head;
+		head = nullptr;
 	}
 	else {
 
-		deqObject* ptr = start;
+		deqObject* ptr = head;
 
-		std::cout << "Object {" << start->data.name << ", " << start->data.old << "} deleted" << std::endl;
+		std::cout << "Object {" << head->data.name << ", " << head->data.old << "} deleted" << std::endl;
 
-		start = start->next;
-		start->prev = nullptr;
+		head = head->next;
+		head->prev = nullptr;
 
 		delete ptr;
 	}
 }
 void Deq::PopBack() {
 
-	if (end == nullptr) {
+	if (tail == nullptr) {
 
 		return;
 	}
 
-	if (start == end) {
+	if (head == tail) {
 
-		std::cout << "Object {" << end->data.name << ", " << end->data.old << "} deleted" << std::endl;
+		std::cout << "Object {" << tail->data.name << ", " << tail->data.old << "} deleted" << std::endl;
 
-		delete end;
+		delete tail;
 
-		end = nullptr;
-		start = nullptr;
+		tail = nullptr;
+		head = nullptr;
 	}
 	else {
 
-		deqObject* ptr = end;
+		deqObject* ptr = tail;
 
 		std::cout << "Object {" << ptr->data.name << ", " << ptr->data.old << "} deleted" << std::endl;
 
-		end = end->prev;
-		end->next = nullptr;
+		tail = tail->prev;
+		tail->next = nullptr;
 
 		delete ptr;
 	}
 }
 void Deq::Delete() {
 
-	while (start != nullptr) {
+	while (head != nullptr) {
 
 		this->PopFront();
 	}

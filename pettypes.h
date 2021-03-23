@@ -37,7 +37,7 @@ public:
 
 private:
 
-	stackObject* start;
+	stackObject* head;
 
 };
 
@@ -59,7 +59,7 @@ public:
 
 private:
 
-	deqObject* start;
-	deqObject* end;
+	deqObject* head;
+	deqObject* tail;
 
 };
