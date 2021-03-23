@@ -21,7 +21,9 @@ public:
 	stack();
 
 	void push(data newData);
+
 	void show();
+
 	void pop();
 
 private:

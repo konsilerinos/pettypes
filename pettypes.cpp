@@ -2,7 +2,7 @@
 
 stack::stack() {
 
-	top = nullptr;
+	
 }
 
 void stack::push(data newData) {
